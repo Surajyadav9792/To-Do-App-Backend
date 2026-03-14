@@ -4,8 +4,12 @@ const main=require('./config/db');
 require('dotenv').config(); //(npm i dotenv)
 app.use(express.json());  //It convert req.body json data in java script object because through the req.body the data is come in json formate and we need in javascript formate same as in case of cookiese
 const todoRoutes = require("./routes/todoRoutes");
+const cors = require('cors');//(npm install cors)
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}))
 app.use("/todo", todoRoutes);
-
 
 main()
 .then(async()=>{

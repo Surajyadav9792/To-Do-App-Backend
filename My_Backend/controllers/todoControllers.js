@@ -2,7 +2,7 @@ const ToDo= require("../model/To_do");
 const addtask = async (req, res) => {
   try {
     const task = await ToDo.create(req.body);
-    res.send("task saved");
+    res.json({message:"task saved"})
 
   } catch (err) {
     res.status(400).send(err);

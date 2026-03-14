@@ -1,6 +1,6 @@
 const express=require('express');
 const ToDoRouter=express.Router();
-const {addtask,gettask}=require('../../../Frontend/controllers/todoControllers')
+const {addtask,gettask}=require('../controllers/todoControllers')
 ToDoRouter.post('/addtask',addtask);
 ToDoRouter.get("/",gettask);
 module.exports=ToDoRouter;

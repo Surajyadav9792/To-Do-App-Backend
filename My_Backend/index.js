@@ -1,7 +1,18 @@
 const express=require('express');
 const app=express();
+const main=require('./config/db');
+require('dotenv').config(); //(npm i dotenv)
+app.use(express.json());  //It convert req.body json data in java script object because through the req.body the data is come in json formate and we need in javascript formate same as in case of cookiese
+const todoRoutes = require("./routes/todoRoutes");
+app.use("/todo", todoRoutes);
 
-app.get("/",(req,res)=>{
-    res.send("jai Shree Ram");
+
+main()
+.then(async()=>{
+    console.log("DB connected");
+    app.listen(process.env.PORT,()=>{
+        console.log("Server listening at port : "+process.env.PORT);
+    });
 })
-app.listen(3200);
+.catch(err => console.log("Error Occured: "+ err));
+

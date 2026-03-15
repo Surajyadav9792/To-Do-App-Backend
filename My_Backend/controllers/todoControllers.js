@@ -18,8 +18,45 @@ const gettask=async(req,res)=>{
    }
 
 }
+const deleteTask = async (req, res) => {
+
+    try {
+
+        console.log("params:", req.params);
+
+        const id = req.params.id;
+// traverse in model and find the id and delete 
+        const result = await ToDo.findByIdAndDelete(id);
+
+        console.log("result:", result);
+
+        if (result) {
+            res.json({
+                success: true,
+                message: "Task deleted"
+            });
+        } else {
+            res.json({
+                success: false,
+                message: "Task not found"
+            });
+        }
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.json({
+            success: false,
+            message: error.message
+        });
+
+    }
+
+};
 
 module.exports = {
   addtask,
-  gettask
+  gettask,
+  deleteTask
 };

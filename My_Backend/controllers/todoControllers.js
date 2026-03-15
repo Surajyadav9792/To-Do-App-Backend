@@ -53,10 +53,8 @@ const deleteTask = async (req, res) => {
         }
 
     } catch (error) {
-
         console.log(error);
-
-        res.json({
+         res.json({
             success: false,
             message: error.message
         });
@@ -64,10 +62,38 @@ const deleteTask = async (req, res) => {
     }
 
 };
+const updateTask = async (req, res) => {
+   try {
+      const id = req.params.id;
+      const task = await ToDo.findByIdAndUpdate(id,
+         {
+            title: req.body.title,
+            description: req.body.description
+         },
+         { new: true }
+      );
+
+      res.json({
+         success: true,
+         result: task
+      });
+
+   }
+   catch (error) {
+      console.log(error);
+       res.json({
+         success: false,
+         message: error.message
+      });
+
+   }
+
+}
 
 module.exports = {
   addtask,
   gettask,
   deleteTask,
-  gettaskById
+  gettaskById,
+  updateTask
 };

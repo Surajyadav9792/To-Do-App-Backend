@@ -18,6 +18,16 @@ const gettask=async(req,res)=>{
    }
 
 }
+const gettaskById = async (req,res) => {
+    try {
+      const id = req.params.id;
+        const task = await ToDo.findById(id);
+        res.json(task);
+    } catch (err) {
+        res.status(401).send(err);
+    }
+
+};
 const deleteTask = async (req, res) => {
 
     try {
@@ -58,5 +68,6 @@ const deleteTask = async (req, res) => {
 module.exports = {
   addtask,
   gettask,
-  deleteTask
+  deleteTask,
+  gettaskById
 };

@@ -1,7 +1,7 @@
 const User=require("../model/User");
 const bcrypt=require('bcrypt');
 const jwt=require("jsonwebtoken");
-const validate=require("../../../Frontend/utils/validate")
+const validate=require("../utils/validate")
 const signup=async (req,res)=>{
     try{
       validate(req.body); 

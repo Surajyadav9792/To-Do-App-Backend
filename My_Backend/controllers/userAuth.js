@@ -83,7 +83,23 @@ const login=async(req,res)=>{
     });
     }
 }
+const logout = async (req, res) => {
+  try {
+
+    res.clearCookie("token");
+
+    res.send("Logged Out Successfully");
+
+  } catch (err) {
+
+    res.status(503).json({
+      message: err.message
+    });
+
+  }
+};
  module.exports = {
     signup,
-    login
+    login,
+    logout
  }
